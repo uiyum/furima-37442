@@ -24,53 +24,54 @@ Things you may want to cover:
 * ...
 
 ## users
-|Column  |Type  |Options    |
-|--------|------|-----------|
-|nickname|string|null: false|
-|email   |string|null: false|
-|password|string|null: false|
+|Column              |Type  |Options    |
+|--------------------|------|-----------|
+|nickname            |string|null: false|
+|email               |string|null: false|
+|encrypted_password  |string|null: false|
+|family_name         |string|null: false|
+|first_name          |string|null: false|
+|family_name_furigana|string|null: false|
+|first_name_furigana |string|null: false|
+|birthday            |string|null: false|
 
 - has_many :sells
 - has_many :buys
-_ has_one :addresses
 
 ## sells
-|Column       |Type  |Options    |
-|-------------|------|-----------|
-|image        |string|null: false|
-|goods_name   |string|null: false|
-|text         |text  |null: false|
-|category     |string|null: false|
-|condition    |string|null: false|
-|postage      |string|null: false|
-|prefectures  |string|null: false|
-|time         |string|null: false|
-|price        |string|null: false|
+|Column       |Type   |Options    |
+|-------------|-------|-----------|
+|goods_name   |string |null: false|
+|text         |text   |null: false|
+|category     |integer|null: false|
+|condition    |integer|null: false|
+|postage      |integer|null: false|
+|prefecture   |integer|null: false|
+|time         |integer|null: false|
+|price        |integer|null: false|
 
 -belongs_to :users
--has_one :buys
+-has_one :buy
 
 ## buys
 |Column  |Type   |Options                       |
 |--------|-------|------------------------------|
-|credit  |integer|null: false                   |
 |user    |string |null: false, foreign_key :true|
 |sell    |string |null: false, foreign_key :true|
-|address |string |null: false, foreign_key :true|
 
 - belongs_to :users
-- has_one :sells
-- has_one :addresses
+- has_one :sell
+- has_one :address
 
 ## addresses
 |Column          |Type   |Options                       |
 |----------------|-------|------------------------------|
-|postal_code     |integer|null: false                   |
-|prefectures     |string |null: false                   |
-|municipalities  |string |null: false                   |
+|postal_code     |string |null: false                   |
+|prefecture      |integer|null: false                   |
+|city            |string |null: false                   |
 |house_number    |integer|null: false                   |
 |building        |string |                              |
-|telephone_number|integer|null: false                   |
+|telephone_number|string |null: false                   |
 |user            |string |null: false, foreign_key :true|
 |buy             |string |null: false, foreign_key :true|
 
