@@ -26,6 +26,8 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Password can't be blank")
     end
+    it
+    
    end
   end
 end
