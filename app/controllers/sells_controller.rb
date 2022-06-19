@@ -3,7 +3,8 @@ class SellsController < ApplicationController
 end
 
 def index
-    @sells = Sell.all
+    @sell = Sell.all
+    #（応用）メッセージ機能を実装しよう、問題４使う？
 end
 
 def new
@@ -11,9 +12,16 @@ def new
 end
 
 def create
-    Sell.create(sell_params)
+    @user = User.find(params[:user_id])
+    @sell = @user.sells,new(sell_params)
+    if @sell.save
+        redirect_to root_path(@sell)#path後で見る
+    else
+        render :index
+    end
 end
 
 private
 def sell_params
-    params.require(:sell).permit(:good_name, :image, :text)
+    params.require(:sell).permit(:good_name, :image, :text).marge(user_id: current_user.id)
+end
