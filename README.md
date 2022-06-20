@@ -41,7 +41,7 @@ Things you may want to cover:
 ## sells
 |Column       |Type      |Options    |
 |-------------|----------|-----------|
-|good_name   |string    |null: false|
+|good_name    |string    |null: false|
 |text         |text      |null: false|
 |category_id  |integer   |null: false|
 |condition_id |integer   |null: false|

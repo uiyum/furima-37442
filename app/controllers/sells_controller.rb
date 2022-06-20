@@ -23,5 +23,5 @@ end
 
 private
 def sell_params
-    params.require(:sell).permit(:good_name, :image, :text).marge(user_id: current_user.id)
+    params.require(:sell).permit(:good_name, :image, :text, :category_id, :condition_id,:delivery_id, :postage_id, :prefecture_id).marge(user_id: current_user.id)
 end
