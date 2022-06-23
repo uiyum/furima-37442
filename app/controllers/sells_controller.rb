@@ -2,7 +2,7 @@ class SellsController < ApplicationController
     before_action :authenticate_user!, except: [:index]
 
     def index
-        @sell = Sell.all
+        #@sell = Sell.all
     end
 
     def new
