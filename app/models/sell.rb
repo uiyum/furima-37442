@@ -13,4 +13,9 @@ class Sell < ApplicationRecord
         presence: {message: "can't be blank"}
     end
 
+    validates :image, presence: true, unless: :was_attached?
+    def was_attached?
+        self.image.attached?
+    end
+
 end

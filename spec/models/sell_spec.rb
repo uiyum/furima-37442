@@ -67,6 +67,16 @@ RSpec.describe Sell, type: :model do
         @sell.valid?
         expect(@sell.errors.full_messages).to include("Price is not a number")
       end
+      it 'imageが空では保存できない' do
+        @sell.image = nil
+        @sell.valid?
+        expect(@sell.errors.full_messages).to include("Image can't be blank")
+      end
+      it 'userが紐付いていないと保存できない' do
+        @sell.user = nil
+        @sell.valid?
+        expect(@sell.errors.full_messages).to include('User must exist')
+      end
 
     end
   end
