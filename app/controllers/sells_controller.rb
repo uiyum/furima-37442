@@ -2,7 +2,7 @@ class SellsController < ApplicationController
     before_action :authenticate_user!, except: [:index]
 
     def index
-        #@sell = Sell.all
+        @sells = Sell.all.order(created_at: :desc)
     end
 
     def new
