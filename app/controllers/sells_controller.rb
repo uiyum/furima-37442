@@ -1,5 +1,6 @@
 class SellsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
+    before_action :set_sell, only: [:show, :edit, :update]
 
     def index
         @sells = Sell.all.order(created_at: :desc)
@@ -19,17 +20,14 @@ class SellsController < ApplicationController
     end
 
     def show
-        @sell = Sell.find(params[:id])
     end
 
     def edit
-        @sell = Sell.find(params[:id])
         redirect_to root_path unless current_user.id == @sell.user_id
 
     end
 
     def update
-        @sell = Sell.find(params[:id])
         if @sell.update(sell_params)
             redirect_to sell_path
         else
@@ -40,6 +38,10 @@ class SellsController < ApplicationController
     private
     def sell_params
         params.require(:sell).permit(:good_name, :image, :text, :category_id, :condition_id,:delivery_id, :postage_id, :prefecture_id, :price).merge(user_id: current_user.id)
+    end
+
+    def set_sell
+        @sell = Sell.find(params[:id])
     end
    
 end
