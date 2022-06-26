@@ -37,8 +37,9 @@ class SellsController < ApplicationController
 
     def destroy
         sell = Sell.find(params[:id])
-        sell.destroy
+        sell.destroy if current_user.id == sell.user_id
         redirect_to root_path
+
     end
 
     private
