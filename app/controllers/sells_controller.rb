@@ -1,5 +1,5 @@
 class SellsController < ApplicationController
-    before_action :authenticate_user!, except: [:index]
+    before_action :authenticate_user!, except: [:index, :show]
 
     def index
         @sells = Sell.all.order(created_at: :desc)
@@ -16,6 +16,10 @@ class SellsController < ApplicationController
         else
             render new_sell_path
         end
+    end
+
+    def show
+        @sell = Sell.find(params[:id])
     end
 
     private
