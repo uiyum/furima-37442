@@ -35,6 +35,12 @@ class SellsController < ApplicationController
         end
     end
 
+    def destroy
+        sell = Sell.find(params[:id])
+        sell.destroy
+        redirect_to root_path
+    end
+
     private
     def sell_params
         params.require(:sell).permit(:good_name, :image, :text, :category_id, :condition_id,:delivery_id, :postage_id, :prefecture_id, :price).merge(user_id: current_user.id)
