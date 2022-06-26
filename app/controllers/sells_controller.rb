@@ -22,6 +22,21 @@ class SellsController < ApplicationController
         @sell = Sell.find(params[:id])
     end
 
+    def edit
+        @sell = Sell.find(params[:id])
+        redirect_to root_path unless current_user.id == @sell.user_id
+
+    end
+
+    def update
+        @sell = Sell.find(params[:id])
+        if @sell.update(sell_params)
+            redirect_to sell_path
+        else
+            render :edit
+        end
+    end
+
     private
     def sell_params
         params.require(:sell).permit(:good_name, :image, :text, :category_id, :condition_id,:delivery_id, :postage_id, :prefecture_id, :price).merge(user_id: current_user.id)
