@@ -31,7 +31,7 @@
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
    <% else %>
     <%# if '商品が購入済みである' %>
-    <%= link_to "購入画面に進む", "#" ,class:"item-red-btn"%>
+    <%= link_to "購入画面に進む", sell_buys_path(@sell.id), class:"item-red-btn"%>
     <%# end %>
     <% end %>
    <% end %>
