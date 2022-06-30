@@ -4,7 +4,7 @@ class BuysController < ApplicationController
     def index
         @sell = Sell.find(params[:sell_id])
         @buy_address = BuyAddress.new
-        if  current_user == @sell.user
+        if  current_user == @sell.user || @sell.buy
             redirect_to root_path
         end
     end
