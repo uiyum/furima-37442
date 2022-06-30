@@ -1,4 +1,5 @@
 class Address < ApplicationRecord
-    belong_to :buy
+    belongs_to :buy
+
 
 end
