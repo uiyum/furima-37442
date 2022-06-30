@@ -26,9 +26,11 @@
   
    <% if user_signed_in? %>
     <% if current_user == @sell.user %>
+    <% if @sell.buy.blank? %>
     <%= link_to "商品の編集", edit_sell_path, method: :get, class: "item-red-btn" %>
     <p class="or-text">or</p>
     <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
+    <% end %>
    <% else %>
     <% if @sell.buy.blank? %>
     <%= link_to "購入画面に進む", sell_buys_path(@sell.id), class:"item-red-btn"%>
