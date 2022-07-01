@@ -1,6 +1,6 @@
 class SellsController < ApplicationController
     before_action :authenticate_user!, except: [:index, :show]
-    before_action :set_sell, only: [:show, :edit, :update]
+    before_action :set_sell, only: [:show, :edit, :update, :destroy]
 
     def index
         @sells = Sell.all.order(created_at: :desc)
@@ -35,6 +35,12 @@ class SellsController < ApplicationController
         else
             render :edit
         end
+    end
+
+    def destroy
+        @sell.destroy if current_user.id == @sell.user_id
+        redirect_to root_path
+
     end
 
     private
