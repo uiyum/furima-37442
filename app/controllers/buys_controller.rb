@@ -1,8 +1,8 @@
 class BuysController < ApplicationController
     before_action :authenticate_user!
+    before_action :set_sell, only: [:index, :create]
 
     def index
-        @sell = Sell.find(params[:sell_id])
         @buy_address = BuyAddress.new
         if  current_user == @sell.user || @sell.buy
             redirect_to root_path
@@ -10,7 +10,6 @@ class BuysController < ApplicationController
     end
 
     def create
-        @sell = Sell.find(params[:sell_id])
         @buy_address = BuyAddress.new(buy_params)
         if @buy_address.valid?
            pay_item
@@ -34,4 +33,9 @@ class BuysController < ApplicationController
             currency: 'jpy'
         )
     end
+
+    def set_sell
+        @sell = Sell.find(params[:sell_id])
+    end
+
 end
