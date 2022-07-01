@@ -23,7 +23,9 @@ class SellsController < ApplicationController
     end
 
     def edit
-        redirect_to root_path unless current_user.id == @sell.user_id
+        if @sell.user_id != current_user.id || @sell.buy != nil
+            redirect_to root_path
+        end
 
     end
 
