@@ -47,6 +47,11 @@ RSpec.describe Sell, type: :model do
         @sell.valid?
         expect(@sell.errors.full_messages).to include("Delivery can't be blank")
       end
+      it "priceが空では作成できない" do
+        @sell.price = ''
+        @sell.valid?
+        expect(@sell.errors.full_messages).to include("Price can't be blank")
+      end
       it "販売価格が300円より少ないのは登録できない" do
         @sell.price = 299
         @sell.valid?
